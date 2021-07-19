@@ -1,0 +1,8 @@
+root = false
+
+[*.{js,ts,mjs}]
+indent_size = 4
+indent_style = tab
+block_comment_start = /*
+block_comment = *
+block_comment_end = */

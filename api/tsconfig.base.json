@@ -1,0 +1,10 @@
+{
+	"extends": "@sapphire/ts-config",
+	"compilerOptions": {
+		"target": "ESNext",
+		"noEmitHelpers": true,
+		"importHelpers": true,
+		"removeComments": true,
+		"importsNotUsedAsValues": "remove"
+	}
+}

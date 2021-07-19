@@ -1,0 +1,70 @@
+{
+  "name": "@lssrp/seapi",
+  "author": "Nejc Drobnič <yo@quantumly.dev> (https://quantumly.dev)",
+  "version": "0.0.23",
+  "license": "UNLICENSED",
+  "types": "generated/ts/api.d.ts",
+  "main": "generated/ts/api.d.ts",
+  "scripts": {
+    "generate:prisma": "prisma generate",
+    "start": "node generated/api",
+    "build": "yarn generate:prisma && yarn build:src",
+    "build:src": "tsc -b src",
+    "clean": "tsc -b src --clean",
+    "watch": "tsc -b src -w",
+    "format": "yarn format:prisma",
+    "format:prisma": "prisma format",
+    "dev": "yarn build && yarn start",
+    "sversion": "standard-version",
+    "codegen": "graphql-codegen --overwrite",
+    "postcodegen": "npm-run-all --sequential typescript:** graphql:**",
+    "typescript:replace-invalid-code": "replace-in-file /}\\;/g } generated/ts/api.d.ts --isRegex",
+    "graphql:replace-query": "replace-in-file \"type Query \" \"type APIQuery \" generated/ts/api.graphql",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "graphql": "^15.5.1",
+    "standard-version": "^9.3.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.6",
+    "@graphql-codegen/schema-ast": "^1.18.2",
+    "@graphql-codegen/typescript": "^1.22.4",
+    "@graphql-codegen/typescript-operations": "^1.18.3",
+    "@graphql-codegen/typescript-react-query": "^1.3.4",
+    "@graphql-codegen/typescript-resolvers": "^1.19.5",
+    "@prisma/client": "^2.26.0",
+    "@sapphire/eslint-config": "^3.2.1",
+    "@sapphire/prettier-config": "^1.1.6",
+    "@sapphire/ts-config": "^2.3.1",
+    "@types/ioredis": "^4.26.5",
+    "@types/node": "^16.3.1",
+    "apollo-server-cache-redis": "^1.5.0",
+    "apollo-server-koa": "^2.25.2",
+    "class-validator": "^0.13.1",
+    "graphql-scalars": "^1.10.0",
+    "ioredis": "^4.27.6",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "npm-run-all": "^4.1.5",
+    "pretty-quick": "^3.1.1",
+    "prisma": "^2.26.0",
+    "reflect-metadata": "^0.1.13",
+    "replace-in-file": "^6.2.0",
+    "sversion": "^0.1.6",
+    "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
+    "type-graphql": "^1.1.1",
+    "typescript": "^4.3.5",
+    "zod": "^3.5.1"
+  },
+  "repository": "git@github.com:SportajGa/api.git",
+  "files": [
+    "generated/ts/api.d.ts",
+    "generated/ts/api.graphql"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "prettier": "@sapphire/prettier-config"
+}
