@@ -7,3 +7,20 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+
+  email EmailService?
+}
+
+model EmailService {
+  id Int @id @default(autoincrement())
+
+  username String @unique
+  address  String @unique
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
