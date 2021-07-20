@@ -4,12 +4,12 @@ import { GraphQLScalarType, GraphQLSchema } from 'graphql';
 import { DateTimeResolver } from 'graphql-scalars';
 import Redis from 'ioredis';
 import Koa from 'koa';
-import { UserResolver } from './lib/resolvers/UserResolver';
 import 'reflect-metadata';
 import { buildSchemaSync } from 'type-graphql';
 import { redisHost, redisPort } from './config';
 import { context } from './lib/context';
 import { EmailServiceResolver } from './lib/resolvers/EmailServiceResolver';
+import { UserResolver } from './lib/resolvers/UserResolver';
 
 export const buildGqlSchema = (): GraphQLSchema => {
 	return buildSchemaSync({

@@ -241,12 +241,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: package_bundle
-          path: api/package.json
+          path: api/
       - name: Download stored changelog.md
         uses: actions/download-artifact@v2
         with:
           name: changelog_bundle
-          path: api/CHANGELOG.md
+          path: api/
       - name: Restore CI Cache
         uses: actions/cache@v2.1.5
         id: cache-restore
