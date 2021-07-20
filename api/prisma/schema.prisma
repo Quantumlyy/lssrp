@@ -26,8 +26,8 @@ model EmailService {
   username String @unique
   address  String @unique
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
+  user   User @relation(fields: [userUsername], references: [username])
+  userUsername String
 
   sent     Email[] @relation("EmailSender")
   received Email[] @relation("EmailReceiver")

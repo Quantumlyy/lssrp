@@ -32,12 +32,18 @@ export class UserResolver {
 		const user = await ctx.prisma.user.create({
 			data: {
 				username: data.username,
-				password: await argon2.hash(data.password)
+				password: await argon2.hash(data.password),
+				email: {
+					create: {
+						username: data.username,
+						address: `${data.username}@quark.mail`
+					}
+				}
 			}
 		});
 
 		// TODO: User proper signing key
-		const token = sign({ user: user.id }, JWTSecret);
+		const token = sign({ user: user.id, username: user.username }, JWTSecret);
 
 		return {
 			user,
@@ -55,7 +61,7 @@ export class UserResolver {
 		if (!validPass) throw new Error('Invalid password');
 
 		// TODO: User proper signing key
-		const token = sign({ user: user.id }, JWTSecret);
+		const token = sign({ user: user.id, username: user.username }, JWTSecret);
 
 		return {
 			user,

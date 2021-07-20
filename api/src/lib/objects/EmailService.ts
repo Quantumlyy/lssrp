@@ -37,10 +37,10 @@ export class Email {
 	public id!: number;
 
 	@Field({ nullable: true })
-	public subject?: string | null;
+	public subject?: string;
 
 	@Field({ nullable: true })
-	public content?: string | null;
+	public content?: string;
 
 	@Field(() => EmailService)
 	public sender!: EmailService;

@@ -9,10 +9,11 @@ import 'reflect-metadata';
 import { buildSchemaSync } from 'type-graphql';
 import { redisHost, redisPort } from './config';
 import { context } from './lib/context';
+import { EmailServiceResolver } from './lib/resolvers/EmailServiceResolver';
 
 export const buildGqlSchema = (): GraphQLSchema => {
 	return buildSchemaSync({
-		resolvers: [UserResolver],
+		resolvers: [UserResolver, EmailServiceResolver],
 		scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }]
 	});
 };
