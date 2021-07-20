@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.25](https://github.com/SportajGa/api/compare/v0.0.24...v0.0.25) (2021-07-20)
+
+
+### Bug Fixes
+
+* allow overwrite ([ff4be79](https://github.com/SportajGa/api/commit/ff4be79bfe176c8b7b9c209ac034c60bf1e1e077))
+
 ### 0.0.24 (2021-07-20)
 
 
