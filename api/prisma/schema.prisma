@@ -12,6 +12,8 @@ model User {
   id       Int    @id @default(autoincrement())
   username String @unique
 
+  password String
+
   email EmailService?
 
   createdAt DateTime @default(now())
@@ -38,7 +40,7 @@ model Email {
   id Int @id @default(autoincrement())
 
   subject  String?
-  contents String
+  content String?
 
   sender   EmailService @relation("EmailSender", fields: [senderId], references: [id])
   senderId Int
