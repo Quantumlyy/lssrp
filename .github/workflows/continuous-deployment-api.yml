@@ -169,7 +169,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: typescript_bundle
-          path: generated/ts/
+          path: api/generated/ts/
           if-no-files-found: error
 
   GithubPublish:
@@ -221,8 +221,8 @@ jobs:
       - name: Push changes
         run: git push --follow-tags origin main
 
-  GithubPackageRegistryNode:
-    name: Publishing release to Github Package Registry
+  NPMPublish:
+    name: Publishing release to NPM
     runs-on: ubuntu-latest
     needs: [GithubPublish]
     steps:
