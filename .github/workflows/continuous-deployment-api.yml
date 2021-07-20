@@ -162,7 +162,9 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Generate GraphQL Schema code
         run: |
+          cd api
           yarn codegen
+          cd ..
       - name: Upload typescript bundle to artifacts
         uses: actions/upload-artifact@v2
         with:
