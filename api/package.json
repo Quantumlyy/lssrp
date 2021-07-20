@@ -65,7 +65,7 @@
     "generated/ts/api.graphql"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "prettier": "@sapphire/prettier-config"
 }

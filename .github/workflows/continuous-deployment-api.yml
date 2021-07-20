@@ -262,7 +262,7 @@ jobs:
       - name: Publish to npm
         run: |
           cd api
-          npm publish
+          npm publish --access public
           cd ..
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
