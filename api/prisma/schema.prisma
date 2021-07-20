@@ -47,5 +47,4 @@ model Email {
   receiverId Int
 
   createdAt DateTime @default(now())
-
 }
