@@ -7,9 +7,11 @@ verify_ssl = true
 
 [packages]
 psycopg2 = "==2.8.6"
+django-environ = "*"
 nox = "*"
 flake8 = "*"
 django = "~=2.2"
+environ = "*"
 
 [requires]
 python_version = "3.8"
