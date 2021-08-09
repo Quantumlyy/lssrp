@@ -1,20 +1,15 @@
 {% extends 'lssrp/base.html' %}
 
 {% block main %}
-    <h2>Registracija</h2>
-    <form method="post">
-        {% for field in form %}
-            <p>
-                {{ field.label_tag }}<br>
-                {{ field }}
-                {% if field.help_text %}
-                    <small style="color: grey">{{ field.help_text }}</small>
-                {% endif %}
-                {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
-                {% endfor %}
-            </p>
-        {% endfor %}
-        <button type="submit">Registriraj se</button>
-    </form>
+    <div class="w-full max-w-xs">
+        <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            {% for field in form %}
+                <div class="mb-4">
+                    <span class="block text-gray-700 text-sm font-bold mb-2">{{ field.label_tag }}</span>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit">Registriraj se</button>
+        </form>
+    </div>
 {% endblock main %}

@@ -1,7 +1,8 @@
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
+
+from lssrp_app.forms import CustomUserCreationForm
 
 
 class HomeView(TemplateView):
@@ -10,7 +11,7 @@ class HomeView(TemplateView):
 
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m
 def signup_view(request):
-    form = UserCreationForm(request.POST)
+    form = CustomUserCreationForm(request.POST)
     if form.is_valid():
         form.save()
         username = form.cleaned_data.get("username")
