@@ -51,6 +51,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "lssrp_core.urls"
 
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -116,14 +119,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = root(env("MEDIA_DIR", default="../static"))
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = "/static/"
 STATIC_ROOT = root(env("STATIC_DIR", default="../static"))
+MEDIA_ROOT = root(env("MEDIA_DIR", default="../media"))
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sl" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>{% block title %}LSSRP{% endblock title %}</title>
+    {% block head %}{% endblock head %}
+
+    <!--region OpenGraph -->
+<!--    <meta property="og:title" content="{% block og_title %}Sportaj.ga{% endblock og_title %}"/>-->
+<!--    <meta property="og:description" content="{% block og_description %}Sportaj.ga{% endblock og_description %}"/>-->
+<!--    <meta property="og:url"-->
+<!--          content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock og_url %}"/>-->
+<!--    <meta property="og:locale" content="sl_SI"/>-->
+<!--    <meta property="og:locale:alternate" content="en_GB"/>-->
+<!--    <meta property="og:locale:alternate" content="en_US"/>-->
+    {% block og_extra %}{% endblock og_extra %}
+    <!--endregion OpenGraph -->
+
+    <!--region Twitter Card -->
+<!--    <meta name="twitter:card" content="{% block twitter_card %}summary{% endblock twitter_card %}">-->
+<!--    <meta name="twitter:creator" content="@quantumlytngld"/>-->
+<!--    <meta name="twitter:site" content="@SportajGa"/>-->
+    {% block twitter_extra %}{% endblock twitter_extra %}
+    <!--endregion Twitter Card -->
+
+    {% block styling %}{% endblock styling %}
+    {% block scripts %}{% endblock scripts %}
+</head>
+<body>
+
+{% block nav %}
+<!--    {% include "sportaj/components/navbar.html" %}-->
+{% endblock nav %}
+
+<main class="{% block main_class %}container{% endblock main_class %}">
+    {% block main %}{% endblock main %}
+</main>
+
+<footer>
+    {% block footer %}
+<!--        {% include "sportaj/components/footer.html" %}-->
+    {% endblock footer %}
+</footer>
+
+{% block body_bottom %}{% endblock body_bottom %}
+</body>
+</html>
