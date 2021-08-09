@@ -1,3 +1,5 @@
+{% load static tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="sl" prefix="og: http://ogp.me/ns#">
 <head>
@@ -16,6 +18,7 @@
     {% block twitter_extra %}{% endblock twitter_extra %}
     <!--endregion Twitter Card -->
 
+    {% tailwind_css %}
     {% block styling %}{% endblock styling %}
     {% block scripts %}{% endblock scripts %}
 </head>

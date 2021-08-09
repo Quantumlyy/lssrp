@@ -12,6 +12,7 @@ nox = "*"
 flake8 = "*"
 django = "~=2.2"
 environ = "*"
+django-tailwind = "==2.2.0"
 
 [requires]
 python_version = "3.8"
