@@ -75,9 +75,7 @@ WSGI_APPLICATION = "lssrp_core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    "default": env.db() if env("DATABASE_URL", default=None) else {}
-}
+DATABASES = {"default": env.db() if env("DATABASE_URL", default=None) else {}}
 
 #############
 #           #
@@ -88,7 +86,7 @@ DATABASES = {
 DEBUG = env("DEBUG", default=True)
 
 INTERNAL_IPS = [
-	"127.0.0.1",
+    "127.0.0.1",
 ] + env.list("DEBUG_IPS", default=[])
 
 
