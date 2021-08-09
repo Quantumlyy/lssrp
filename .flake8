@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+    .git,
+    .github,
+    lssrp_app/migrations
+
+ignore = E203,W503
+
+import-order-style = google
+application-import-names = lssrp_app,lssrp_core
+
+max-line-length = 100
