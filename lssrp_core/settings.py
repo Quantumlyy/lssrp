@@ -56,7 +56,7 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 
 TAILWIND_APP_NAME = "lssrp_app"
-NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 TEMPLATES = [
     {
