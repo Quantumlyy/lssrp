@@ -13,9 +13,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+from lssrp_core import settings
 import lssrp_app.views
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,3 +25,10 @@ urlpatterns = [
     path("prijava/", lssrp_app.views.login_view, name="login"),
     path("registracija/", lssrp_app.views.register_view, name="register"),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ] + urlpatterns
