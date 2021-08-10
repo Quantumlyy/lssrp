@@ -52,6 +52,9 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
+            colors: {
+              gainsboro: '#DCDCDC'
+            },
             container: {
                 center: true
             }
