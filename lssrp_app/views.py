@@ -11,6 +11,7 @@ class HomeView(TemplateView):
 
 
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m
+@auth.login_excluded("/")
 def register_view(request):
     register_form = StyledUserCreationForm(request.POST)
     if register_form.is_valid():
@@ -24,6 +25,7 @@ def register_view(request):
 
 
 # https://stackoverflow.com/questions/31482178/django-login-page-for-non-admin-dashboard
+@auth.login_excluded("/")
 def login_view(request):
     login_form = StyledAuthenticationForm(request=request, data=request.POST)
     if login_form.is_valid():
