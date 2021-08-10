@@ -4,6 +4,7 @@
 {% block main %}
     <div class="flex h-screen">
         <div class="m-auto">
+            {% include 'auth/components/logo.html' %}
             <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 {% csrf_token %}
                 {% for field in form %}
@@ -19,6 +20,7 @@
                     </button>
                 </div>
             </form>
+            {% include 'auth/components/copyright.html' %}
         </div>
     </div>
 {% endblock main %}
