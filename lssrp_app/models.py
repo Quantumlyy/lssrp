@@ -13,8 +13,12 @@ class Email(models.Model):
     content = models.TextField(null=True, blank=True)
     sent_time = models.DateField()
 
-    sender = models.ForeignKey(MailProfile, related_name="sent", on_delete=models.CASCADE)
-    receiver = models.ForeignKey(MailProfile, related_name="received", on_delete=models.CASCADE)
+    sender = models.ForeignKey(
+        MailProfile, related_name="sent", on_delete=models.CASCADE
+    )
+    receiver = models.ForeignKey(
+        MailProfile, related_name="received", on_delete=models.CASCADE
+    )
 
 
 @receiver(post_save, sender=User)

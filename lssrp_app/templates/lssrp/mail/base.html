@@ -6,16 +6,34 @@
     <section class="flex">
         <header class="w-1/5">
             <section class="flex flex-col">
-                <header class="h-2/12">
-                    <div class="min-h-full h-full min-w-full w-full bg-white text-center"><span class="py-4">Los Santos Mail</span></div>
+                <header class="h-1/6">
+                    <div class="min-h-full h-full min-w-full w-full bg-lifeinvader text-white font-bold text-center">
+                        <div class="inset-y-0 right-0 border-r-2 border-white"/>
+                        <div class="py-2">Lifeinvader | Mail</div>
+                    </div>
                 </header>
-                <article class="h-10/12">Hut</article>
+                <article class="h-5/6">Hut</article>
             </section>
         </header>
         <article class="w-4/5">
             <section class="flex flex-col">
-                <header class="h-1/12">Hut</header>
-                <article class="h-11/12">Hit</article>
+                <header class="h-1/6">
+                    <div class="min-h-full h-full min-w-full w-full bg-lifeinvader text-white font-bold">
+                        <div class="inset-y-0 left-0 border-l-2 border-white"/>
+                        <div class="pl-4 py-2">
+                            E-Mails
+                        </div>
+                    </div>
+                </header>
+                <article class="h-5/6">
+                    {% if profile.received|length > 0 %}
+                        Hi
+                    {% else %}
+                        <div class="flex min-w-full h-full min-h-full">
+                            <div class="m-auto text-center">Wow... najdi si nekaj prijateljev</div>
+                        </div>
+                    {% endif %}
+                </article>
             </section>
         </article>
     </section>

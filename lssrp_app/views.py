@@ -2,6 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 
+from lssrp_app import models
 from lssrp_app.forms import StyledUserCreationForm, StyledAuthenticationForm
 from lssrp_app.utils import auth
 
@@ -12,6 +13,14 @@ class HomeView(TemplateView):
 
 class MailView(TemplateView):
     template_name = "lssrp/mail/base.html"
+    model = models.MailProfile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["profile"] = models.MailProfile(user=self.request.user)
+
+        return context
 
 
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m

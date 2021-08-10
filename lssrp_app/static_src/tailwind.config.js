@@ -53,7 +53,10 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-              gainsboro: '#DCDCDC'
+                gainsboro: '#DCDCDC',
+                lifeinvader: {
+                    DEFAULT: '#B60101'
+                }
             },
             container: {
                 center: true
