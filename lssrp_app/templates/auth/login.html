@@ -1,3 +1,4 @@
+{#https://v1.tailwindcss.com/components/forms#}
 {% extends 'lssrp/base.html' %}
 
 {% block main %}
@@ -11,11 +12,14 @@
                         {{ field }}
                     </div>
                 {% endfor %}
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-between">
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                         Prijavi se
                     </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'register' %}?next=/">
+                        Ustvari račun
+                    </a>
                 </div>
             </form>
         </div>

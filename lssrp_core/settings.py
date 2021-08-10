@@ -134,3 +134,6 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     # other finders..
 ]
+
+LOGIN_URL = "/prijava"
+LOGIN_REDIRECT_URL = "/"

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 
 from lssrp_app.forms import StyledUserCreationForm, StyledAuthenticationForm
+from lssrp_app.utils import auth
 
 
 class HomeView(TemplateView):
@@ -18,7 +19,7 @@ def register_view(request):
         password = register_form.cleaned_data.get("password1")
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect("/")
+        return redirect(auth.next(request))
     return render(request, "auth/register.html", {"form": register_form})
 
 
@@ -26,8 +27,7 @@ def register_view(request):
 def login_view(request):
     login_form = StyledAuthenticationForm(request=request, data=request.POST)
     if login_form.is_valid():
-        print("Hi")
         login_form.clean()
         login(request, login_form.get_user())
-        return redirect("/")
+        return redirect(auth.next(request))
     return render(request, "auth/login.html", {"form": login_form})
