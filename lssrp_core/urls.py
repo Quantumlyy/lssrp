@@ -22,6 +22,7 @@ from lssrp_core import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", login_required(lssrp_app.views.HomeView.as_view()), name="home"),
+    path("mail", login_required(lssrp_app.views.MailView.as_view()), name="mail"),
     path("prijava/", lssrp_app.views.login_view, name="login"),
     path("registracija/", lssrp_app.views.register_view, name="register"),
 ]

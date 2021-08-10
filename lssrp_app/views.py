@@ -10,6 +10,10 @@ class HomeView(TemplateView):
     template_name = "lssrp/base.html"
 
 
+class MailView(TemplateView):
+    template_name = "lssrp/mail/base.html"
+
+
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m
 @auth.login_excluded("/")
 def register_view(request):
