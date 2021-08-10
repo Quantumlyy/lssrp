@@ -20,5 +20,6 @@ import lssrp_app.views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", lssrp_app.views.HomeView.as_view(), name="home"),
-    path("registracija/", lssrp_app.views.signup_view, name="register"),
+    path("prijava/", lssrp_app.views.login_view, name="login"),
+    path("registracija/", lssrp_app.views.register_view, name="register"),
 ]
