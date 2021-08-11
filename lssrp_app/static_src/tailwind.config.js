@@ -60,6 +60,9 @@ module.exports = {
             },
             container: {
                 center: true
+            },
+            fontFamily: {
+                ubuntu: ['Ubuntu']
             }
         },
     },
