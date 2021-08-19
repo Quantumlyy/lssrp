@@ -7,6 +7,9 @@ from django.dispatch import receiver
 class MailProfile(models.Model):
     user = models.OneToOneField(User, related_name="mail", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{username}@".format(username=self.user.username)
+
 
 class Email(models.Model):
     title = models.CharField(max_length=256)
@@ -19,6 +22,9 @@ class Email(models.Model):
     receiver = models.ForeignKey(
         MailProfile, related_name="received", on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return "subject:\"{subject}\", from:{sender}, to:{receiver}".format(subject=self.title, sender=self.sender, receiver=self.receiver)
 
 
 @receiver(post_save, sender=User)
