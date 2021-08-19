@@ -12,7 +12,7 @@ class HomeView(TemplateView):
 
 
 class MailView(TemplateView):
-    template_name = "lssrp/mail/base.html"
+    template_name = "lssrp/mail/home.html"
     model = models.MailProfile
 
     def get_context_data(self, **kwargs):

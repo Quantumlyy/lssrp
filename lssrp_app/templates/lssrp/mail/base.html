@@ -12,7 +12,7 @@
                         <div class="py-2">Lifeinvader | Mail</div>
                     </div>
                 </header>
-                <article class="h-5/6">Hut</article>
+                <article class="h-5/6">{% block side_left %}Side{% endblock side_left %}</article>
             </section>
         </header>
         <article class="w-4/5">
@@ -26,13 +26,7 @@
                     </div>
                 </header>
                 <article class="h-5/6">
-                    {% if profile.received|length > 0 %}
-                        Hi
-                    {% else %}
-                        <div class="flex min-w-full h-full min-h-full">
-                            <div class="m-auto text-center">Wow... najdi si nekaj prijateljev</div>
-                        </div>
-                    {% endif %}
+                    {% block side_right %}Side{% endblock side_right %}
                 </article>
             </section>
         </article>
