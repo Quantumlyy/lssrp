@@ -10,9 +10,7 @@ class EmailAdmin(admin.StackedInline):
 
 @admin.register(models.MailProfile)
 class MailProfileAdmin(admin.ModelAdmin):
-    inlines = [
-        EmailAdmin
-    ]
+    inlines = [EmailAdmin]
 
     class Meta:
         model = models.MailProfile

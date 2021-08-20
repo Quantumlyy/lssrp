@@ -19,8 +19,12 @@ class MailView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context["profile"] = models.MailProfile(user=self.request.user)
-        context["received"] = models.Email.objects.all().filter(receiver=context["profile"].user_id)
-        context["sent"] = models.Email.objects.all().filter(sender=context["profile"].user_id)
+        context["received"] = models.Email.objects.all().filter(
+            receiver=context["profile"].user_id
+        )
+        context["sent"] = models.Email.objects.all().filter(
+            sender=context["profile"].user_id
+        )
 
         return context
 

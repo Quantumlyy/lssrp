@@ -24,7 +24,9 @@ class Email(models.Model):
     )
 
     def __str__(self):
-        return "subject:\"{subject}\", from:{sender}, to:{receiver}".format(subject=self.title, sender=self.sender, receiver=self.receiver)
+        return 'subject:"{subject}", from:{sender}, to:{receiver}'.format(
+            subject=self.title, sender=self.sender, receiver=self.receiver
+        )
 
 
 @receiver(post_save, sender=User)
