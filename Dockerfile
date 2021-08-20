@@ -19,8 +19,9 @@ RUN PIP_NO_CACHE_DIR=true pipenv install --system --deploy --ignore-pipfile && \
 	pip install --no-cache-dir gunicorn
 
 RUN apk del .build-deps
-RUN python manage.py tailwind build
 
 COPY . .
+
+RUN python manage.py tailwind build
 
 CMD exec gunicorn lssrp_core.wsgi:application --bind 0.0.0.0:${PORT:-80} --capture-output
