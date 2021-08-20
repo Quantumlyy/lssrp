@@ -8,7 +8,7 @@ RUN pip install pipenv
 
 # PostgreSQL + cryptography
 RUN apk update && \
-	apk add --no-cache libpq && \
+	apk add --no-cache libpq nodejs npm && \
 	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev
 
 # Copy and install Pipfile before everything else for better caching
