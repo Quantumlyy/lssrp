@@ -19,6 +19,7 @@ RUN PIP_NO_CACHE_DIR=true pipenv install --system --deploy --ignore-pipfile && \
 	pip install --no-cache-dir gunicorn
 
 RUN apk del .build-deps
+RUN python manage.py tailwind build
 
 COPY . .
 
