@@ -23,6 +23,11 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", login_required(lssrp_app.views.HomeView.as_view()), name="home"),
     path("mail", login_required(lssrp_app.views.MailView.as_view()), name="mail"),
+    path(
+        "mail/email/<int:pk>",
+        login_required(lssrp_app.views.EmailView.as_view()),
+        name="email",
+    ),
     path("prijava/", lssrp_app.views.login_view, name="login"),
     path("registracija/", lssrp_app.views.register_view, name="register"),
 ]

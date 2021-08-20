@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
+from django.db.models import Q
 
 from lssrp_app import models
 from lssrp_app.forms import StyledUserCreationForm, StyledAuthenticationForm
@@ -18,12 +19,29 @@ class MailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["profile"] = models.MailProfile(user=self.request.user)
+        context["profile"] = models.MailProfile.objects.get(user=self.request.user)
         context["received"] = models.Email.objects.all().filter(
             receiver=context["profile"].user_id
         )
         context["sent"] = models.Email.objects.all().filter(
             sender=context["profile"].user_id
+        )
+
+        return context
+
+
+class EmailView(TemplateView):
+    template_name = "lssrp/mail/email.html"
+    model = models.Email
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["profile"] = models.MailProfile.objects.get(user=self.request.user)
+        context["email"] = models.Email.objects.get(
+            Q(id=kwargs["pk"]),
+            Q(receiver=context["profile"].user_id)
+            | Q(sender=context["profile"].user_id),
         )
 
         return context

@@ -1,0 +1,8 @@
+{% extends 'lssrp/mail/base.html' %}
+
+{% block extra %}
+    {% include "lssrp/mail/components/compose.html" %}
+{% endblock extra %}
+{% block side_right %}
+    {{ email.title }}
+{% endblock side_right %}
