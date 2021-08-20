@@ -1,11 +1,14 @@
 {% extends 'lssrp/mail/base.html' %}
 
 {% block side_right %}
-    {% if profile.received|length > 0 %}
-        Hi
+    {% if received|length > 0 %}
+        {% for email in received %}
+            {{ email }}
+            <br/>
+        {% endfor %}
     {% else %}
         <div class="flex min-w-full h-full min-h-full">
-            <div class="m-auto text-center">Wow... najdi si nekaj prijateljev</div>
+            <div class="m-auto text-center font-bold">Wow... najdi si nekaj prijateljev</div>
         </div>
     {% endif %}
 {% endblock side_right %}
