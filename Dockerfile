@@ -11,6 +11,8 @@ RUN apk update && \
 	apk add --no-cache libpq && \
 	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev
 
+RUN npm i -g rimraf
+
 # Copy and install Pipfile before everything else for better caching
 COPY Pipfile* ./
 
