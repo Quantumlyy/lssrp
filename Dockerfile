@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM nikolaik/python-nodejs:python3.9-nodejs16-alpine
 
 WORKDIR /usr/src/app
 EXPOSE ${PORT:-80}
@@ -8,7 +8,7 @@ RUN pip install pipenv
 
 # PostgreSQL + cryptography
 RUN apk update && \
-	apk add --no-cache libpq nodejs npm && \
+	apk add --no-cache libpq && \
 	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev
 
 # Copy and install Pipfile before everything else for better caching
