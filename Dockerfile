@@ -25,6 +25,7 @@ RUN apk del .build-deps
 COPY . .
 
 ENV NPM_BIN_PATH=/usr/local/bin/npm
+RUN python manage.py tailwind install
 RUN python manage.py tailwind build
 
 CMD exec gunicorn lssrp_core.wsgi:application --bind 0.0.0.0:${PORT:-80} --capture-output
