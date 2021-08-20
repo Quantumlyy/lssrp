@@ -1,3 +1,5 @@
+version: '3.5'
+
 services:
   db:
     container_name: 'lifeinvader-db'
@@ -17,6 +19,7 @@ services:
     depends_on:
       - db
     environment:
+      ALLOWED_HOSTS: 'internet.lss-rp.net'
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
       SECRET_KEY: ${SECRET_KEY}
     ports:

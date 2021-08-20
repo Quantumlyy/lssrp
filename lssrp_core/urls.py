@@ -15,6 +15,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import lssrp_app.views
 from lssrp_core import settings
@@ -31,6 +32,8 @@ urlpatterns = [
     path("prijava/", lssrp_app.views.login_view, name="login"),
     path("registracija/", lssrp_app.views.register_view, name="register"),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:
     import debug_toolbar
