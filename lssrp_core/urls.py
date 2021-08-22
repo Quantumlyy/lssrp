@@ -29,6 +29,7 @@ urlpatterns = [
         login_required(lssrp_app.views.EmailView.as_view()),
         name="email",
     ),
+    path("mail/compose", login_required(lssrp_app.views.MailComposeView.as_view()), name="mail_compose"),
     path("prijava/", lssrp_app.views.login_view, name="login"),
     path("registracija/", lssrp_app.views.register_view, name="register"),
 ]
