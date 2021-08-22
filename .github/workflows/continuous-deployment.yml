@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - 'docker-entrypoint.sh'
       - 'Dockerfile'
       - '.github/workflows/continuous-deployment.yml'
       - 'README.md'
