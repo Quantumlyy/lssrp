@@ -1,22 +1,22 @@
 {% extends 'lssrp/base.html' %}
 
 {% block title %}Lifeinvader | E-Mail{% endblock title %}
-{% block main_class %}w-full{% endblock main_class %}
+{% block main_class %}min-w-screen w-screen min-h-screen h-screen{% endblock main_class %}
 {% block main %}
     {% block extra %}{% endblock extra %}
-    <section class="flex">
-        <header class="w-1/5">
-            <section class="flex flex-col">
-                <header class="h-1/6">
-                    <div class="min-h-full h-full min-w-full w-full bg-lifeinvader text-white font-bold text-center">
+    <section class="flex h-full">
+        <header class="w-1/5 h-full">
+            <section class="flex flex-col h-full">
+                <header class="h-1/12">
+                    <div class="w-full bg-lifeinvader text-white font-bold text-center">
                         <div class="inset-y-0 right-0 border-r-2 border-white"/>
                         <div class="py-2">Lifeinvader | Mail</div>
                     </div>
                 </header>
-                <article class="h-5/6">{% block side_left %}Side{% endblock side_left %}</article>
+                <article class="h-11/12">{% block side_left %}{% include 'lssrp/mail/components/side.html' %}{% endblock side_left %}</article>
             </section>
         </header>
-        <article class="w-4/5">
+        <article class="w-4/5 min-h-full">
             <section class="flex flex-col">
                 <header class="h-1/6">
                     <div class="min-h-full h-full min-w-full w-full bg-lifeinvader text-white font-bold">

@@ -4,10 +4,9 @@
     {% include "lssrp/mail/components/compose.html" %}
 {% endblock extra %}
 {% block side_right %}
-    {{ profile }}
-    {% if received|length > 0 %}
+    {% if target|length > 0 %}
         <ul>
-            {% for email in received %}
+            {% for email in target %}
                 {% include "lssrp/mail/components/mail.html" with email=email %}
             {% endfor %}
         </ul>

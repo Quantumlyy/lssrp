@@ -4,6 +4,7 @@
 
 @layer base {
     body {
+        scrollbar-width: none;
         @apply bg-gainsboro font-ubuntu;
     }
 }

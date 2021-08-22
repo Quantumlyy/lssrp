@@ -58,6 +58,10 @@ module.exports = {
                     DEFAULT: '#B60101'
                 }
             },
+            height: {
+                '1/12': '8.333333%',
+                '11/12': '91.666667%'
+            },
             container: {
                 center: true
             },

@@ -24,8 +24,20 @@ class MailView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context["profile"] = models.MailProfile.objects.get(user=self.request.user)
-        context["received"] = models.Email.objects.filter(receiver=context["profile"])
-        context["sent"] = models.Email.objects.filter(sender=context["profile"])
+        context["target"] = models.Email.objects.filter(receiver=context["profile"])
+
+        return context
+
+
+class MailSentView(TemplateView):
+    template_name = "lssrp/mail/home.html"
+    model = models.MailProfile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["profile"] = models.MailProfile.objects.get(user=self.request.user)
+        context["target"] = models.Email.objects.filter(sender=context["profile"])
 
         return context
 
