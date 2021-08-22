@@ -1,10 +1,14 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
 from django.db.models import Q
 
 from lssrp_app import models
-from lssrp_app.forms import StyledUserCreationForm, StyledAuthenticationForm
+from lssrp_app.forms import (
+    StyledUserCreationForm,
+    StyledAuthenticationForm,
+)
 from lssrp_app.utils import auth
 
 
@@ -20,12 +24,8 @@ class MailView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context["profile"] = models.MailProfile.objects.get(user=self.request.user)
-        context["received"] = models.Email.objects.all().filter(
-            receiver=context["profile"].user_id
-        )
-        context["sent"] = models.Email.objects.all().filter(
-            sender=context["profile"].user_id
-        )
+        context["received"] = models.Email.objects.filter(receiver=context["profile"])
+        context["sent"] = models.Email.objects.filter(sender=context["profile"])
 
         return context
 
@@ -40,15 +40,22 @@ class EmailView(TemplateView):
         context["profile"] = models.MailProfile.objects.get(user=self.request.user)
         context["email"] = models.Email.objects.get(
             Q(id=kwargs["pk"]),
-            Q(receiver=context["profile"].user_id)
-            | Q(sender=context["profile"].user_id),
+            Q(receiver=context["profile"]) | Q(sender=context["profile"]),
         )
 
         return context
 
 
-class MailComposeView(TemplateView):
+class MailComposeView(CreateView):
     template_name = "lssrp/mail/compose.html"
+    model = models.Email
+    fields = ["title", "content", "receiver"]
+    success_url = "/mail"
+
+    def form_valid(self, form):
+        form.instance.sender = self.request.user.mail
+
+        return super().form_valid(form)
 
 
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m
