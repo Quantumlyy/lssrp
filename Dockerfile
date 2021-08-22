@@ -28,4 +28,4 @@ ENV NPM_BIN_PATH=/usr/local/bin/npm
 RUN python manage.py tailwind install
 RUN python manage.py tailwind build
 
-CMD ["/docker-entrypoint.sh"]
+CMD ["./docker-entrypoint.sh"]
