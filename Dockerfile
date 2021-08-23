@@ -8,7 +8,7 @@ RUN pip install pipenv
 
 # PostgreSQL + cryptography
 RUN apk update && \
-	apk add --no-cache libpq && \
+	apk add --no-cache libpq curl && \
 	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev
 
 RUN npm i -g rimraf
@@ -29,5 +29,8 @@ RUN python manage.py tailwind install
 RUN python manage.py tailwind build
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
+
+HEALTHCHECK --interval=30s --timeout=20s --retries=15 \
+    CMD curl --silent 'http://localhost:${PORT:-80}/prijava' || exit 1
 
 CMD ["docker-entrypoint.sh"]
