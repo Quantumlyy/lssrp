@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.db.models import Q
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from lssrp_app import models
 from lssrp_app.forms import (
@@ -72,6 +73,7 @@ class MailComposeView(CreateView):
 
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m
 @auth.login_excluded("/")
+@xframe_options_exempt
 def register_view(request):
     register_form = StyledUserCreationForm(request.POST)
     if register_form.is_valid():
@@ -86,6 +88,7 @@ def register_view(request):
 
 # https://stackoverflow.com/questions/31482178/django-login-page-for-non-admin-dashboard
 @auth.login_excluded("/")
+@xframe_options_exempt
 def login_view(request):
     login_form = StyledAuthenticationForm(request=request, data=request.POST)
     if login_form.is_valid():

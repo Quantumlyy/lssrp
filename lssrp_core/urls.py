@@ -16,32 +16,43 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 import lssrp_app.views
 from lssrp_core import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", login_required(lssrp_app.views.HomeView.as_view()), name="home"),
-    path("mail/", login_required(lssrp_app.views.MailView.as_view()), name="mail"),
+    path(
+        "",
+        xframe_options_exempt(login_required(lssrp_app.views.HomeView.as_view())),
+        name="home",
+    ),
+    path(
+        "mail/",
+        xframe_options_exempt(login_required(lssrp_app.views.MailView.as_view())),
+        name="mail",
+    ),
     path(
         "mail/folder/in/",
-        login_required(lssrp_app.views.MailView.as_view()),
+        xframe_options_exempt(login_required(lssrp_app.views.MailView.as_view())),
         name="mail",
     ),
     path(
         "mail/folder/out/",
-        login_required(lssrp_app.views.MailSentView.as_view()),
+        xframe_options_exempt(login_required(lssrp_app.views.MailSentView.as_view())),
         name="mail_sent",
     ),
     path(
         "mail/email/<int:pk>",
-        login_required(lssrp_app.views.EmailView.as_view()),
+        xframe_options_exempt(login_required(lssrp_app.views.EmailView.as_view())),
         name="email",
     ),
     path(
         "mail/compose/",
-        login_required(lssrp_app.views.MailComposeView.as_view()),
+        xframe_options_exempt(
+            login_required(lssrp_app.views.MailComposeView.as_view())
+        ),
         name="mail_compose",
     ),
     path("prijava/", lssrp_app.views.login_view, name="login"),
