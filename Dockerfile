@@ -30,7 +30,7 @@ RUN python manage.py tailwind build
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
-HEALTHCHECK --interval=30s --timeout=20s --retries=15 \
-    CMD curl --silent 'http://localhost:${PORT:-80}/prijava' || exit 1
+# HEALTHCHECK --interval=30s --timeout=20s --retries=15 \
+#     CMD curl --silent 'http://localhost:${PORT:-80}/prijava' || exit 1
 
 CMD ["docker-entrypoint.sh"]
