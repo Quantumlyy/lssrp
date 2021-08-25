@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 
 class MailProfile(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, related_name="mail", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -12,6 +13,7 @@ class MailProfile(models.Model):
 
 
 class Email(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)
     content = models.TextField(null=True, blank=True)
     sent_time = models.DateField(auto_now_add=True, blank=True)
