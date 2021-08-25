@@ -44,6 +44,15 @@ class StyledUserCreationForm(UserCreationForm):
         help_text=_("Enter the same password as before, for verification."),
     )
 
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+
+        if username and "@" in username:
+            # TODO: translation
+            msg = "Uporabniško ime ne vključuje domene."
+            self.add_error("username", msg)
+
 
 class StyledAuthenticationForm(AuthenticationForm):
     username = UsernameField(
