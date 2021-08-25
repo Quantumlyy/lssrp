@@ -6,12 +6,12 @@ from django.shortcuts import redirect
 from lssrp_core import settings
 
 
-def next(request: WSGIRequest, force: bool):
+def next_path(request: WSGIRequest, force: bool):
     nxt = request.GET.get("next", None)
     if nxt is None:
         return settings.LOGIN_REDIRECT_URL
     elif not is_safe_url(
-        url=nxt, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+            url=nxt, allowed_hosts={request.get_host()}, require_https=request.is_secure()
     ) and not force:
         return settings.LOGIN_REDIRECT_URL
     else:
@@ -22,6 +22,7 @@ def next(request: WSGIRequest, force: bool):
 login_forbidden = user_passes_test(
     lambda u: u.is_anonymous(), settings.LOGIN_REDIRECT_URL
 )
+
 
 # https://newbedev.com/how-to-prevent-user-to-access-login-page-in-django-when-already-logged-in
 def login_excluded(redirect_to):

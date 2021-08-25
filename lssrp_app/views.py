@@ -112,7 +112,7 @@ def register_view(request):
         password = register_form.cleaned_data.get("password1")
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect(auth.next(request, True))
+        return redirect(auth.next_path(request, True))
     return render(request, "auth/register.html", {"form": register_form})
 
 
@@ -124,5 +124,5 @@ def login_view(request):
     if login_form.is_valid():
         login_form.clean()
         login(request, login_form.get_user())
-        return redirect(auth.next(request, True))
+        return redirect(auth.next_path(request, True))
     return render(request, "auth/login.html", {"form": login_form})
