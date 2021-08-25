@@ -2,7 +2,7 @@
 
 {% block side_right %}
     <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        {% csrf_token %}
+{#        {% csrf_token %}#}
         {% for field in form %}
             <div class="mb-4">
                 <span class="block text-gray-700 text-sm font-bold mb-2">{{ field.label_tag }}</span>

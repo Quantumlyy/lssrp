@@ -1,9 +1,12 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 from lssrp_app import models
 from lssrp_app.forms import (
@@ -13,10 +16,14 @@ from lssrp_app.forms import (
 from lssrp_app.utils import auth
 
 
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(login_required, name="dispatch")
 class HomeView(TemplateView):
     template_name = "lssrp/base.html"
 
 
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(login_required, name="dispatch")
 class MailView(TemplateView):
     template_name = "lssrp/mail/home.html"
     model = models.MailProfile
@@ -30,6 +37,8 @@ class MailView(TemplateView):
         return context
 
 
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(login_required, name="dispatch")
 class MailSentView(TemplateView):
     template_name = "lssrp/mail/home.html"
     model = models.MailProfile
@@ -43,6 +52,8 @@ class MailSentView(TemplateView):
         return context
 
 
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(login_required, name="dispatch")
 class EmailView(TemplateView):
     template_name = "lssrp/mail/email.html"
     model = models.Email
@@ -59,6 +70,9 @@ class EmailView(TemplateView):
         return context
 
 
+@method_decorator(csrf_exempt, name="dispatch")
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(login_required, name="dispatch")
 class MailComposeView(CreateView):
     template_name = "lssrp/mail/compose.html"
     model = models.Email
