@@ -39,8 +39,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.cache.FetchFromCacheMiddleware",
@@ -135,11 +135,11 @@ STATICFILES_FINDERS = [
     # other finders..
 ]
 
-SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = None
-CSRF_COOKIE_SECURE = True
-# CSRF_USE_SESSIONS = True
+SESSION_COOKIE_SAMESITE = env("SESSION_COOKIE_SAMESITE", default="None")
+SESSION_COOKIE_SECURE = env("SESSION_COOKIE_SECURE", default=True)
+CSRF_COOKIE_SAMESITE = env("CSRF_COOKIE_SAMESITE", default="None")
+CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE", default=True)
+CSRF_USE_SESSIONS = env("CSRF_USE_SESSIONS", default=False)
 
 LOGIN_URL = "/prijava"
 LOGIN_REDIRECT_URL = "/"

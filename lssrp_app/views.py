@@ -1,13 +1,15 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
+from lssrp_core import settings
 from lssrp_app import models
 from lssrp_app.forms import (
     StyledUserCreationForm,
@@ -83,6 +85,20 @@ class MailComposeView(CreateView):
         form.instance.sender = self.request.user.mail
 
         return super().form_valid(form)
+
+
+@method_decorator(xframe_options_exempt, name="dispatch")
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(settings.LOGIN_URL + "?next=/mail/")
+
+
+@method_decorator(xframe_options_exempt, name="dispatch")
+class CloseView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(settings.LOGIN_URL + "?next=/mail/")
 
 
 # https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m

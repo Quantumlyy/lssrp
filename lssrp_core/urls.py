@@ -53,6 +53,8 @@ urlpatterns = [
     ),
     path("prijava/", lssrp_app.views.login_view, name="login"),
     path("registracija/", lssrp_app.views.register_view, name="register"),
+    path("odjava/", lssrp_app.views.LogoutView.as_view(), name="logout"),
+    path("close/", lssrp_app.views.CloseView.as_view(), name="close"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
