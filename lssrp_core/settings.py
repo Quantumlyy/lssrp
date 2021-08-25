@@ -143,3 +143,5 @@ CSRF_USE_SESSIONS = env("CSRF_USE_SESSIONS", default=False)
 
 LOGIN_URL = "/prijava"
 LOGIN_REDIRECT_URL = "/"
+
+DECORATIVE_EMAIL_DOMAIN = env("DECORATIVE_EMAIL_DOMAIN", default="los-santos.com")

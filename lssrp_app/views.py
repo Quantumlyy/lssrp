@@ -78,7 +78,7 @@ class EmailView(TemplateView):
 class MailComposeView(CreateView):
     template_name = "lssrp/mail/compose.html"
     model = models.Email
-    fields = ["title", "content", "receiver"]
+    fields = ["receiver", "title", "content"]
     success_url = "/mail"
 
     def form_valid(self, form):
@@ -112,7 +112,7 @@ def register_view(request):
         password = register_form.cleaned_data.get("password1")
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect(auth.next(request))
+        return redirect(auth.next(request, True))
     return render(request, "auth/register.html", {"form": register_form})
 
 
@@ -124,5 +124,5 @@ def login_view(request):
     if login_form.is_valid():
         login_form.clean()
         login(request, login_form.get_user())
-        return redirect(auth.next(request))
+        return redirect(auth.next(request, True))
     return render(request, "auth/login.html", {"form": login_form})

@@ -3,13 +3,17 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from lssrp_core import settings
+
 
 class MailProfile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, related_name="mail", on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{username}@".format(username=self.user.username)
+        return "{username}@{domain}".format(
+            username=self.user.username, domain=settings.DECORATIVE_EMAIL_DOMAIN
+        )
 
 
 class Email(models.Model):
