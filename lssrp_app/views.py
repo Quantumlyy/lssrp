@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.vary import vary_on_cookie
 
 from lssrp_core import settings
 from lssrp_app import models
@@ -26,6 +27,7 @@ class HomeView(TemplateView):
 
 @method_decorator(xframe_options_exempt, name="dispatch")
 @method_decorator(login_required, name="dispatch")
+@method_decorator(vary_on_cookie, name="dispatch")
 class MailView(TemplateView):
     template_name = "lssrp/mail/home.html"
     model = models.MailProfile
@@ -41,6 +43,7 @@ class MailView(TemplateView):
 
 @method_decorator(xframe_options_exempt, name="dispatch")
 @method_decorator(login_required, name="dispatch")
+@method_decorator(vary_on_cookie, name="dispatch")
 class MailSentView(TemplateView):
     template_name = "lssrp/mail/home.html"
     model = models.MailProfile
@@ -56,6 +59,7 @@ class MailSentView(TemplateView):
 
 @method_decorator(xframe_options_exempt, name="dispatch")
 @method_decorator(login_required, name="dispatch")
+@method_decorator(vary_on_cookie, name="dispatch")
 class EmailView(TemplateView):
     template_name = "lssrp/mail/email.html"
     model = models.Email
@@ -75,6 +79,7 @@ class EmailView(TemplateView):
 @method_decorator(csrf_exempt, name="dispatch")
 @method_decorator(xframe_options_exempt, name="dispatch")
 @method_decorator(login_required, name="dispatch")
+@method_decorator(vary_on_cookie, name="dispatch")
 class MailComposeView(CreateView):
     template_name = "lssrp/mail/compose.html"
     model = models.Email
