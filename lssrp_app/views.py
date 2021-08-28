@@ -82,8 +82,7 @@ class EmailView(TemplateView):
 @method_decorator(vary_on_cookie, name="dispatch")
 class MailComposeView(CreateView):
     template_name = "lssrp/mail/compose.html"
-    model = models.Email
-    fields = ["receiver", "title", "content"]
+    form_class = MailComposeForm
     success_url = "/mail"
 
     def form_valid(self, form):

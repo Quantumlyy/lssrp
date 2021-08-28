@@ -10,6 +10,8 @@ class MailProfile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, related_name="mail", on_delete=models.CASCADE)
 
+    hidden = models.BooleanField(default=False)
+
     def __str__(self):
         return "{username}@{domain}".format(
             username=self.user.username, domain=settings.DECORATIVE_EMAIL_DOMAIN

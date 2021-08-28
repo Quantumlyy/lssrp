@@ -3,12 +3,15 @@ from django.contrib.auth.forms import (
     UsernameField,
     AuthenticationForm,
 )
-from django.forms import TextInput, CharField, PasswordInput
+from django.forms import TextInput, CharField, PasswordInput, ModelForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import (
     get_user_model,
     password_validation,
 )
+from django.db.models import Q
+
+from lssrp_app import models
 
 
 class StyledUserCreationForm(UserCreationForm):
@@ -72,3 +75,15 @@ class StyledAuthenticationForm(AuthenticationForm):
             }
         ),
     )
+
+
+class MailComposeForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(MailComposeForm, self).__init__(*args, **kwargs)
+        self.fields["receiver"].queryset = models.MailProfile.objects.filter(
+            hidden=False
+        )
+
+    class Meta:
+        model = models.Email
+        fields = ["receiver", "title", "content"]
