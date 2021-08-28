@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tailwind",
+    "tinymce",
+    "django_bleach",
 ]
 
 MIDDLEWARE = [
@@ -145,3 +147,32 @@ LOGIN_URL = "/prijava"
 LOGIN_REDIRECT_URL = "/"
 
 DECORATIVE_EMAIL_DOMAIN = env("DECORATIVE_EMAIL_DOMAIN", default="los-santos.com")
+
+# https://github.com/jazzband/django-tinymce/issues/333
+TINYMCE_COMPRESSOR = env("TINYMCE_COMPRESSOR", default=False)
+
+BLEACH_ALLOWED_TAGS = [
+    "span",
+    "p",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "pre",
+    "strong",
+    "em",
+    "li",
+    "ul",
+    "ol",
+]
+BLEACH_ALLOWED_ATTRIBUTES = {"*": ["style"]}
+BLEACH_ALLOWED_STYLES = [
+    "background-color",
+    "color",
+    "text-align",
+    "list-style-type",
+    "padding-left",
+    "padding-right",
+]

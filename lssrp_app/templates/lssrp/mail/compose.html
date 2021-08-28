@@ -1,5 +1,8 @@
 {% extends 'lssrp/mail/base.html' %}
 
+{% block scripts %}
+    {{ form.media }}
+{% endblock scripts %}
 {% block side_right %}
     <form method="post" class="px-8 pt-6 pb-8 mb-4">
 {#        {% csrf_token %}#}

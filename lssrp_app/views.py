@@ -1,8 +1,10 @@
+import bleach
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
+from django.template import Template, Context
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import CreateView
@@ -76,6 +78,13 @@ class EmailView(TemplateView):
         context["email"] = models.Email.objects.get(
             Q(id=kwargs["pk"]),
             Q(receiver=context["profile"]) | Q(sender=context["profile"]),
+        )
+
+        context["content_bleached"] = bleach.clean(
+            context["email"].content,
+            tags=settings.BLEACH_ALLOWED_TAGS,
+            attributes=settings.BLEACH_ALLOWED_ATTRIBUTES,
+            styles=settings.BLEACH_ALLOWED_STYLES,
         )
 
         return context

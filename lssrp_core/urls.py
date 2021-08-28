@@ -14,13 +14,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import lssrp_app.views
 from lssrp_core import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("tinymce/", include("tinymce.urls")),
     path(
         "",
         lssrp_app.views.HomeView.as_view(),
@@ -56,8 +56,6 @@ urlpatterns = [
     path("odjava/", lssrp_app.views.LogoutView.as_view(), name="logout"),
     path("close/", lssrp_app.views.CloseView.as_view(), name="close"),
 ]
-
-urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:
     import debug_toolbar

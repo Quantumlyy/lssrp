@@ -1,7 +1,10 @@
+import re
+import bleach
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from tinymce.models import HTMLField
 
 from lssrp_core import settings
 
@@ -21,7 +24,7 @@ class MailProfile(models.Model):
 class Email(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)
-    content = models.TextField(null=True, blank=True)
+    content = HTMLField(default="", null=False, blank=False)
     sent_time = models.DateTimeField(auto_now_add=True, blank=True)
 
     sender = models.ForeignKey(
@@ -30,6 +33,17 @@ class Email(models.Model):
     receiver = models.ForeignKey(
         MailProfile, related_name="received", on_delete=models.CASCADE
     )
+
+    def content_text(self) -> str:
+        cleanr = re.compile("<.*?>")
+        cleantext = re.sub(cleanr, "", self.content)
+
+        return bleach.clean(
+            cleantext,
+            tags=settings.BLEACH_ALLOWED_TAGS,
+            attributes=settings.BLEACH_ALLOWED_ATTRIBUTES,
+            styles=settings.BLEACH_ALLOWED_STYLES,
+        )
 
     def __str__(self):
         return 'subject:"{subject}", from:{sender}, to:{receiver}'.format(
