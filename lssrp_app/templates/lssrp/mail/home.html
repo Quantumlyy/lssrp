@@ -7,7 +7,7 @@
     {% if target|length > 0 %}
         <ul>
             {% for email in target %}
-                {% include "lssrp/mail/components/mail.html" with email=email %}
+                {% include "lssrp/mail/components/mail.html" with email=email sent=sent %}
             {% endfor %}
         </ul>
     {% else %}

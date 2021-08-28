@@ -15,6 +15,7 @@ from lssrp_app import models
 from lssrp_app.forms import (
     StyledUserCreationForm,
     StyledAuthenticationForm,
+    MailComposeForm,
 )
 from lssrp_app.utils import auth
 
@@ -37,6 +38,7 @@ class MailView(TemplateView):
 
         context["profile"] = models.MailProfile.objects.get(user=self.request.user)
         context["target"] = models.Email.objects.filter(receiver=context["profile"])
+        context["sent"] = False
 
         return context
 
@@ -53,6 +55,7 @@ class MailSentView(TemplateView):
 
         context["profile"] = models.MailProfile.objects.get(user=self.request.user)
         context["target"] = models.Email.objects.filter(sender=context["profile"])
+        context["sent"] = True
 
         return context
 

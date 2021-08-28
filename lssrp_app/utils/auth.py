@@ -10,9 +10,14 @@ def next_path(request: WSGIRequest, force: bool):
     nxt = request.GET.get("next", None)
     if nxt is None:
         return settings.LOGIN_REDIRECT_URL
-    elif not is_safe_url(
-            url=nxt, allowed_hosts={request.get_host()}, require_https=request.is_secure()
-    ) and not force:
+    elif (
+        not is_safe_url(
+            url=nxt,
+            allowed_hosts={request.get_host()},
+            require_https=request.is_secure(),
+        )
+        and not force
+    ):
         return settings.LOGIN_REDIRECT_URL
     else:
         return nxt

@@ -8,7 +8,10 @@
         <div class="flex flex-col">
             <div class="pl-8 py-1 font-bold">{{ email.title }}</div>
             <div class="flex">
-                <div class="pl-4 py-1 w-10/12">{{ email.sender }}</div>
+                <div class="pl-4 py-1 w-10/12">
+                    <div>Sender: <code>{{ email.sender }}</code></div>
+                    <div>Receiver: <code>{{ email.receiver }}</code></div>
+                </div>
                 <div class="w-2/12 text-right">{{ email.sent_time }}</div>
             </div>
             <div class="pl-8 pt-4 container">{{ email.content }}</div>

@@ -1,7 +1,13 @@
 <li class="list-none py-2 min-w-full">
     <a href="/mail/email/{{ email.id }}">
         <div class="px-8 mx-auto flex items-center space-x-4 select-none cursor-pointer">
-            <div class="flex-initial w-2/12">{{ email.sender }}</div>
+            <div class="flex-initial w-2/12">
+                {% if sent == False %}
+                    {{ email.sender }}
+                {% else %}
+                    {{ email.receiver }}
+                {% endif %}
+            </div>
             <div class="flex-initial w-8/12">
                 <div class="flex">
                     <div class="flex-initial w-1/5 font-bold">
