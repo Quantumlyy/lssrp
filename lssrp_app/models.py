@@ -22,7 +22,7 @@ class Email(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)
     content = models.TextField(null=True, blank=True)
-    sent_time = models.DateField(auto_now_add=True, blank=True)
+    sent_time = models.DateTimeField(auto_now_add=True, blank=True)
 
     sender = models.ForeignKey(
         MailProfile, related_name="sent", on_delete=models.CASCADE

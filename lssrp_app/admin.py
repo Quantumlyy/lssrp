@@ -17,12 +17,10 @@ class EmailReceivedAdmin(admin.StackedInline):
 
 @admin.register(models.MailProfile)
 class MailProfileAdmin(admin.ModelAdmin):
+    list_display = ["user", "hidden"]
     inlines = [EmailSentAdmin, EmailReceivedAdmin]
-
-    class Meta:
-        model = models.MailProfile
 
 
 @admin.register(models.Email)
 class EmailAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["title", "sender", "receiver", "sent_time"]

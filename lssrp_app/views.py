@@ -1,4 +1,6 @@
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
@@ -83,7 +85,7 @@ class EmailView(TemplateView):
 @method_decorator(xframe_options_exempt, name="dispatch")
 @method_decorator(login_required, name="dispatch")
 @method_decorator(vary_on_cookie, name="dispatch")
-class MailComposeView(CreateView):
+class MailComposeView(LoginRequiredMixin, CreateView):
     template_name = "lssrp/mail/compose.html"
     form_class = MailComposeForm
     success_url = "/mail"
@@ -108,28 +110,30 @@ class CloseView(View):
         return HttpResponseRedirect(settings.LOGIN_URL + "?next=/mail/")
 
 
-# https://dev.to/coderasha/create-advanced-user-sign-up-view-in-django-step-by-step-k9m
-@auth.login_excluded("/")
-@xframe_options_exempt
-def register_view(request):
-    register_form = StyledUserCreationForm(request.POST)
-    if register_form.is_valid():
-        register_form.save()
-        username = register_form.cleaned_data.get("username")
-        password = register_form.cleaned_data.get("password1")
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(auth.login_excluded("/"), name="dispatch")
+class RegisterView(CreateView):
+    template_name = "auth/register.html"
+    form_class = StyledUserCreationForm
+
+    def form_valid(self, form):
+        form.save()
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password1")
         user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect(auth.next_path(request, True))
-    return render(request, "auth/register.html", {"form": register_form})
+        login(self.request, user)
+
+        return redirect(auth.next_path(self.request, True))
 
 
-# https://stackoverflow.com/questions/31482178/django-login-page-for-non-admin-dashboard
-@auth.login_excluded("/")
-@xframe_options_exempt
-def login_view(request):
-    login_form = StyledAuthenticationForm(request=request, data=request.POST)
-    if login_form.is_valid():
-        login_form.clean()
-        login(request, login_form.get_user())
-        return redirect(auth.next_path(request, True))
-    return render(request, "auth/login.html", {"form": login_form})
+@method_decorator(xframe_options_exempt, name="dispatch")
+@method_decorator(auth.login_excluded("/"), name="dispatch")
+class LoginView(LoginView):
+    template_name = "auth/register.html"
+    form_class = StyledAuthenticationForm
+
+    def form_valid(self, form):
+        form.clean()
+        login(self.request, form.get_user())
+
+        return redirect(auth.next_path(self.request, True))
