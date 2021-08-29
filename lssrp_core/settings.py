@@ -167,7 +167,7 @@ BLEACH_ALLOWED_TAGS = [
     "ul",
     "ol",
 ]
-BLEACH_ALLOWED_ATTRIBUTES = {"*": ["style"]}
+BLEACH_ALLOWED_ATTRIBUTES = {"*": ["style", "class"]}
 BLEACH_ALLOWED_STYLES = [
     "background-color",
     "color",
