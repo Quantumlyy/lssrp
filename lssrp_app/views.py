@@ -138,7 +138,7 @@ class RegisterView(CreateView):
 @method_decorator(xframe_options_exempt, name="dispatch")
 @method_decorator(auth.login_excluded("/"), name="dispatch")
 class LoginView(LoginView):
-    template_name = "auth/register.html"
+    template_name = "auth/login.html"
     form_class = StyledAuthenticationForm
 
     def form_valid(self, form):
