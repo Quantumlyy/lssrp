@@ -4,7 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
-from django.template import Template, Context
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import CreateView
@@ -99,10 +98,10 @@ class MailComposeView(LoginRequiredMixin, CreateView):
     form_class = MailComposeForm
     success_url = "/mail"
 
-    def form_valid(self, form):
-        form.instance.sender = self.request.user.mail
-
-        return super().form_valid(form)
+    def get_form_kwargs(self):
+        form = super().get_form_kwargs()
+        form['_user'] = self.request.user
+        return form
 
 
 @method_decorator(xframe_options_exempt, name="dispatch")

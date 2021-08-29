@@ -3,13 +3,20 @@ from django.contrib.auth.forms import (
     UsernameField,
     AuthenticationForm,
 )
-from django.forms import TextInput, CharField, PasswordInput, ModelForm
+from django.forms import (
+    TextInput,
+    CharField,
+    PasswordInput,
+    ModelMultipleChoiceField,
+    SelectMultiple,
+    Form
+)
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import (
     get_user_model,
     password_validation,
 )
-from django.db.models import Q
+from tinymce.widgets import TinyMCE
 
 from lssrp_app import models
 
@@ -77,13 +84,24 @@ class StyledAuthenticationForm(AuthenticationForm):
     )
 
 
-class MailComposeForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(MailComposeForm, self).__init__(*args, **kwargs)
-        self.fields["receiver"].queryset = models.MailProfile.objects.filter(
-            hidden=False
-        )
+class MailComposeForm(Form):
 
-    class Meta:
-        model = models.Email
-        fields = ["receiver", "title", "content"]
+    receiver_multi = ModelMultipleChoiceField(
+        label=_("Receiver"),
+        widget=SelectMultiple,
+        queryset=models.MailProfile.objects.filter(hidden=False),
+    )
+    title = CharField(max_length=256)
+    content = CharField(widget=TinyMCE)
+
+    def save(self, *args, **kwargs):
+        receiver_multi = kwargs.get("receiver_multi")
+        title = kwargs.get("title")
+        content = kwargs.get("content")
+
+        for receiver in receiver_multi:
+            models.Email.objects.create(title=title, content=content, receiver=receiver, sender=self.user.mail)
+
+    def __init__(self, _user, *args, **kwargs):
+        self.user = _user
+        super(MailComposeForm, self).__init__(*args, **kwargs)
