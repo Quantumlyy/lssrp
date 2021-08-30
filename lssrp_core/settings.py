@@ -157,10 +157,15 @@ TINYMCE_DEFAULT_CONFIG = {
     "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
     "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
     "code,help,wordcount",
-    "toolbar": "undo redo | formatselect | "
-    "bold italic backcolor | alignleft aligncenter "
-    "alignright alignjustify | bullist numlist outdent indent | "
-    "removeformat | help",
+    "toolbar":
+    "undo redo"
+    " | formatselect"
+    " | bold italic backcolor"
+    " | blockquote"
+    " | alignleft aligncenter alignright alignjustify"
+    " | bullist numlist outdent indent"
+    " | removeformat"
+    " | help",
     "suffix": ".min" if TINYMCE_COMPRESSOR else ""
 }
 
@@ -176,6 +181,7 @@ BLEACH_ALLOWED_TAGS = [
     "pre",
     "strong",
     "em",
+    "blockquote",
     "li",
     "ul",
     "ol",
