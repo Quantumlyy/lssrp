@@ -166,7 +166,8 @@ BLEACH_ALLOWED_TAGS = [
     "li",
     "ul",
     "ol",
-    "div"
+    "div",
+    "br"
 ]
 BLEACH_ALLOWED_ATTRIBUTES = {"*": ["style", "class"]}
 BLEACH_ALLOWED_STYLES = [
