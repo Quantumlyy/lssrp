@@ -7,13 +7,13 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lssrp_app', '0006_alter_email_content'),
+        ("lssrp_app", "0006_alter_email_content"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='email',
-            name='content',
-            field=tinymce.models.HTMLField(default=''),
+            model_name="email",
+            name="content",
+            field=tinymce.models.HTMLField(default=""),
         ),
     ]

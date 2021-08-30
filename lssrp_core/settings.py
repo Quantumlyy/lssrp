@@ -149,7 +149,20 @@ LOGIN_REDIRECT_URL = "/"
 DECORATIVE_EMAIL_DOMAIN = env("DECORATIVE_EMAIL_DOMAIN", default="los-santos.com")
 
 # https://github.com/jazzband/django-tinymce/issues/333
-TINYMCE_COMPRESSOR = env("TINYMCE_COMPRESSOR", default=False)
+TINYMCE_COMPRESSOR = env("TINYMCE_COMPRESSOR", default=True)
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "height": 500,
+    "menubar": False,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+    "code,help,wordcount",
+    "toolbar": "undo redo | formatselect | "
+    "bold italic backcolor | alignleft aligncenter "
+    "alignright alignjustify | bullist numlist outdent indent | "
+    "removeformat | help",
+    "suffix": ".min" if TINYMCE_COMPRESSOR else ""
+}
 
 BLEACH_ALLOWED_TAGS = [
     "span",
@@ -167,7 +180,7 @@ BLEACH_ALLOWED_TAGS = [
     "ul",
     "ol",
     "div",
-    "br"
+    "br",
 ]
 BLEACH_ALLOWED_ATTRIBUTES = {"*": ["style", "class"]}
 BLEACH_ALLOWED_STYLES = [
