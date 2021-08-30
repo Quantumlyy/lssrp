@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
-from django.template import Template, Context
+from urllib.parse import quote, unquote
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import CreateView
@@ -87,6 +87,12 @@ class EmailView(TemplateView):
             styles=settings.BLEACH_ALLOWED_STYLES,
         )
 
+        context["reply_data"] = {
+            "title": quote("RE: " + context["email"].title),
+            "content": quote("<br /><blockquote>" + context["content_bleached"] + "</blockquote>"),
+            "receiver": quote(context["email"].sender.user.username)
+        }
+
         return context
 
 
@@ -98,6 +104,18 @@ class MailComposeView(LoginRequiredMixin, CreateView):
     template_name = "lssrp/mail/compose.html"
     form_class = MailComposeForm
     success_url = "/mail"
+
+    def get_initial(self):
+        initial = super().get_initial()
+
+        initial['title'] = unquote(self.request.GET.get('title', ''))
+        initial['content'] = unquote(self.request.GET.get('content', ''))
+
+        receiver = unquote(self.request.GET.get('receiver', ''))
+        if receiver != "":
+            initial['receiver'] = models.MailProfile.objects.get(user__username=receiver)
+
+        return initial
 
     def form_valid(self, form):
         form.instance.sender = self.request.user.mail

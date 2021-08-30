@@ -315,4 +315,12 @@
       border: 2px inset;
     }
   }
+
+  .email {
+    blockquote {
+      border-left: 2px solid #ccc;
+      margin-left: 1.5rem;
+      padding-left: 1rem;
+    }
+  }
 }

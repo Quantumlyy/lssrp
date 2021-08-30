@@ -3,6 +3,7 @@
 
 {% block extra %}
     {% include 'lssrp/mail/components/compose_float.html' %}
+    {% include 'lssrp/mail/components/reply_float.html' with data=reply_data %}
 {% endblock extra %}
 {% block side_right %}
     <div class="m-4">
@@ -15,7 +16,7 @@
                 </div>
                 <div class="w-2/12 text-right">{{ email.sent_time }}</div>
             </div>
-            <div class="pl-8 pt-4 container unreset">{{ content_bleached|safe }}</div>
+            <div class="pl-8 pt-4 container unreset email">{{ content_bleached|safe }}</div>
         </div>
     </div>
 {% endblock side_right %}
