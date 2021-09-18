@@ -15,45 +15,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import li_mail_app.views
+import li_mail_app.urls
 import li_shared_app.urls
 from li_core import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
-    path(
-        "",
-        li_mail_app.views.HomeView.as_view(),
-        name="home",
-    ),
-    path(
-        "mail/",
-        li_mail_app.views.MailView.as_view(),
-        name="mail",
-    ),
-    path(
-        "mail/folder/in/",
-        li_mail_app.views.MailView.as_view(),
-        name="mail",
-    ),
-    path(
-        "mail/folder/out/",
-        li_mail_app.views.MailSentView.as_view(),
-        name="mail_sent",
-    ),
-    path(
-        "mail/email/<int:pk>",
-        li_mail_app.views.EmailView.as_view(),
-        name="email",
-    ),
-    path(
-        "mail/compose/",
-        li_mail_app.views.MailComposeView.as_view(),
-        name="mail_compose",
-    ),
 ]
 
+urlpatterns = urlpatterns + li_mail_app.urls.urlpatterns
 urlpatterns = urlpatterns + li_shared_app.urls.urlpatterns
 
 if settings.DEBUG:
