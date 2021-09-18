@@ -1,12 +1,8 @@
 import bleach
-from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
 from urllib.parse import quote, unquote
 from django.utils.decorators import method_decorator
-from django.views.generic.base import TemplateView, View
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.views.decorators.clickjacking import xframe_options_exempt
@@ -16,12 +12,7 @@ from django.views.decorators.vary import vary_on_cookie
 
 from li_core import settings
 from li_mail_app import models
-from li_mail_app.forms import (
-    StyledUserCreationForm,
-    StyledAuthenticationForm,
-    MailComposeForm,
-)
-from li_mail_app.utils import auth
+from li_mail_app.forms import MailComposeForm
 
 
 @method_decorator(xframe_options_exempt, name="dispatch")
@@ -89,8 +80,10 @@ class EmailView(TemplateView):
 
         context["reply_data"] = {
             "title": quote("RE: " + context["email"].title),
-            "content": quote("<br /><blockquote>" + context["content_bleached"] + "</blockquote>"),
-            "receiver": quote(context["email"].sender.user.username)
+            "content": quote(
+                "<br /><blockquote>" + context["content_bleached"] + "</blockquote>"
+            ),
+            "receiver": quote(context["email"].sender.user.username),
         }
 
         return context
@@ -108,12 +101,14 @@ class MailComposeView(LoginRequiredMixin, CreateView):
     def get_initial(self):
         initial = super().get_initial()
 
-        initial['title'] = unquote(self.request.GET.get('title', ''))
-        initial['content'] = unquote(self.request.GET.get('content', ''))
+        initial["title"] = unquote(self.request.GET.get("title", ""))
+        initial["content"] = unquote(self.request.GET.get("content", ""))
 
-        receiver = unquote(self.request.GET.get('receiver', ''))
+        receiver = unquote(self.request.GET.get("receiver", ""))
         if receiver != "":
-            initial['receiver'] = models.MailProfile.objects.get(user__username=receiver)
+            initial["receiver"] = models.MailProfile.objects.get(
+                user__username=receiver
+            )
 
         return initial
 
@@ -121,46 +116,3 @@ class MailComposeView(LoginRequiredMixin, CreateView):
         form.instance.sender = self.request.user.mail
 
         return super().form_valid(form)
-
-
-@method_decorator(xframe_options_exempt, name="dispatch")
-class LogoutView(View):
-    def get(self, request):
-        logout(request)
-        return HttpResponseRedirect(settings.LOGIN_URL + "?next=/mail/")
-
-
-@method_decorator(xframe_options_exempt, name="dispatch")
-class CloseView(View):
-    def get(self, request):
-        logout(request)
-        return HttpResponseRedirect(settings.LOGIN_URL + "?next=/mail/")
-
-
-@method_decorator(xframe_options_exempt, name="dispatch")
-@method_decorator(auth.login_excluded("/"), name="dispatch")
-class RegisterView(CreateView):
-    template_name = "auth/register.html"
-    form_class = StyledUserCreationForm
-
-    def form_valid(self, form):
-        form.save()
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get("password1")
-        user = authenticate(username=username, password=password)
-        login(self.request, user)
-
-        return redirect(auth.next_path(self.request, True))
-
-
-@method_decorator(xframe_options_exempt, name="dispatch")
-@method_decorator(auth.login_excluded("/"), name="dispatch")
-class LoginView(LoginView):
-    template_name = "auth/login.html"
-    form_class = StyledAuthenticationForm
-
-    def form_valid(self, form):
-        form.clean()
-        login(self.request, form.get_user())
-
-        return redirect(auth.next_path(self.request, True))

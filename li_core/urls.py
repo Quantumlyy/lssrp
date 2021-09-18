@@ -16,6 +16,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 import li_mail_app.views
+import li_shared_app.urls
 from li_core import settings
 
 urlpatterns = [
@@ -51,11 +52,9 @@ urlpatterns = [
         li_mail_app.views.MailComposeView.as_view(),
         name="mail_compose",
     ),
-    path("prijava/", li_mail_app.views.LoginView.as_view(), name="login"),
-    path("registracija/", li_mail_app.views.RegisterView.as_view(), name="register"),
-    path("odjava/", li_mail_app.views.LogoutView.as_view(), name="logout"),
-    path("close/", li_mail_app.views.CloseView.as_view(), name="close"),
 ]
+
+urlpatterns = urlpatterns + li_shared_app.urls.urlpatterns
 
 if settings.DEBUG:
     import debug_toolbar

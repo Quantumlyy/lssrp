@@ -28,6 +28,7 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS", default=[])
 # Application definition
 
 INSTALLED_APPS = [
+    "li_shared_app",
     "li_mail_app",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -157,7 +158,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
     "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
     "code,help,wordcount",
-    "toolbar":
+    "toolbar": ""
     "undo redo"
     " | formatselect"
     " | bold italic backcolor"
@@ -166,7 +167,7 @@ TINYMCE_DEFAULT_CONFIG = {
     " | bullist numlist outdent indent"
     " | removeformat"
     " | help",
-    "suffix": ".min" if TINYMCE_COMPRESSOR else ""
+    "suffix": ".min" if TINYMCE_COMPRESSOR else "",
 }
 
 BLEACH_ALLOWED_TAGS = [
