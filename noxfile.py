@@ -1,7 +1,7 @@
 import nox
 
 nox.options.sessions = ["lint"]
-locations = "lssrp_app", "lssrp_core", "noxfile.py"
+locations = "li_mail_app", "li_core", "noxfile.py"
 
 
 @nox.session(python=["3.9", "3.8", "3.7"])

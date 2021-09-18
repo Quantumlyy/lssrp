@@ -11,7 +11,7 @@ from django.contrib.auth import (
 )
 from django.db.models import Q
 
-from lssrp_app import models
+from li_mail_app import models
 
 
 class StyledUserCreationForm(UserCreationForm):

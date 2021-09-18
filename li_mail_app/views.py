@@ -14,14 +14,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.vary import vary_on_cookie
 
-from lssrp_core import settings
-from lssrp_app import models
-from lssrp_app.forms import (
+from li_core import settings
+from li_mail_app import models
+from li_mail_app.forms import (
     StyledUserCreationForm,
     StyledAuthenticationForm,
     MailComposeForm,
 )
-from lssrp_app.utils import auth
+from li_mail_app.utils import auth
 
 
 @method_decorator(xframe_options_exempt, name="dispatch")

@@ -9,8 +9,8 @@ on:
       - 'Dockerfile'
       - '.github/workflows/continuous-deployment.yml'
       - 'README.md'
-      - 'lssrp_app/**'
-      - 'lssrp_core/**'
+      - 'li_mail_app/**'
+      - 'li_core/**'
 
 jobs:
   PushToRegistry:

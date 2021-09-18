@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("lssrp_app", "0001_base_user_mail_data"),
+        ("li_mail_app", "0001_base_user_mail_data"),
     ]
 
     operations = [

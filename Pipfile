@@ -4,12 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+nox = "*"
+flake8 = "*"
 
 [packages]
 psycopg2 = "==2.8.6"
 django-environ = "*"
-nox = "*"
-flake8 = "*"
 django = "~=3.1"
 environ = "*"
 django-tailwind = "==2.2.0"

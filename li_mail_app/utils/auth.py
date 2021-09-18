@@ -3,7 +3,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.utils.http import is_safe_url
 from django.shortcuts import redirect
 
-from lssrp_core import settings
+from li_core import settings
 
 
 def next_path(request: WSGIRequest, force: bool):

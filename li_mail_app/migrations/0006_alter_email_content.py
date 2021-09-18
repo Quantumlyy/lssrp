@@ -7,7 +7,7 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("lssrp_app", "0005_alter_email_sent_time"),
+        ("li_mail_app", "0005_alter_email_sent_time"),
     ]
 
     operations = [

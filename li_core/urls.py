@@ -15,46 +15,46 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import lssrp_app.views
-from lssrp_core import settings
+import li_mail_app.views
+from li_core import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path(
         "",
-        lssrp_app.views.HomeView.as_view(),
+        li_mail_app.views.HomeView.as_view(),
         name="home",
     ),
     path(
         "mail/",
-        lssrp_app.views.MailView.as_view(),
+        li_mail_app.views.MailView.as_view(),
         name="mail",
     ),
     path(
         "mail/folder/in/",
-        lssrp_app.views.MailView.as_view(),
+        li_mail_app.views.MailView.as_view(),
         name="mail",
     ),
     path(
         "mail/folder/out/",
-        lssrp_app.views.MailSentView.as_view(),
+        li_mail_app.views.MailSentView.as_view(),
         name="mail_sent",
     ),
     path(
         "mail/email/<int:pk>",
-        lssrp_app.views.EmailView.as_view(),
+        li_mail_app.views.EmailView.as_view(),
         name="email",
     ),
     path(
         "mail/compose/",
-        lssrp_app.views.MailComposeView.as_view(),
+        li_mail_app.views.MailComposeView.as_view(),
         name="mail_compose",
     ),
-    path("prijava/", lssrp_app.views.LoginView.as_view(), name="login"),
-    path("registracija/", lssrp_app.views.RegisterView.as_view(), name="register"),
-    path("odjava/", lssrp_app.views.LogoutView.as_view(), name="logout"),
-    path("close/", lssrp_app.views.CloseView.as_view(), name="close"),
+    path("prijava/", li_mail_app.views.LoginView.as_view(), name="login"),
+    path("registracija/", li_mail_app.views.RegisterView.as_view(), name="register"),
+    path("odjava/", li_mail_app.views.LogoutView.as_view(), name="logout"),
+    path("close/", li_mail_app.views.CloseView.as_view(), name="close"),
 ]
 
 if settings.DEBUG:

@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="received",
-                        to="lssrp_app.MailProfile",
+                        to="li_mail_app.MailProfile",
                     ),
                 ),
                 (
@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="sent",
-                        to="lssrp_app.MailProfile",
+                        to="li_mail_app.MailProfile",
                     ),
                 ),
             ],

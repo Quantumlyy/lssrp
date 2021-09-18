@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from tinymce.models import HTMLField
 
-from lssrp_core import settings
+from li_core import settings
 
 
 class MailProfile(models.Model):

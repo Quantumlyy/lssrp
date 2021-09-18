@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from lssrp_app import models
+from li_mail_app import models
 
 
 class EmailSentAdmin(admin.StackedInline):
