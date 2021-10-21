@@ -7,6 +7,6 @@ exclude =
 ignore = E203,W503
 
 import-order-style = google
-application-import-names = lssrp_app,lssrp_core
+application-import-names = li_shared_app,li_mail_app,li_core
 
 max-line-length = 100
