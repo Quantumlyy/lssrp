@@ -19,6 +19,8 @@ bleach = "==4.1.0"
 django-bleach = "==0.7.2"
 html2text = "==2020.1.16"
 django-filebrowser = "==3.13.3"
+pydantic = "==1.8.2"
+ujson = "==4.2.0"
 
 [requires]
 python_version = "3.8"
