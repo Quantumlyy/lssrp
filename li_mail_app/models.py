@@ -8,6 +8,17 @@ from tinymce.models import HTMLField
 
 from li_core import settings
 
+cleanr = re.compile("<.*?>")
+
+
+class LoginPermissions(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(
+        User, related_name="permissions", on_delete=models.CASCADE
+    )
+
+    no_license = models.BooleanField(default=False)
+
 
 class MailProfile(models.Model):
     id = models.AutoField(primary_key=True)
@@ -35,7 +46,6 @@ class Email(models.Model):
     )
 
     def content_text(self) -> str:
-        cleanr = re.compile("<.*?>")
         cleantext = re.sub(cleanr, "", self.content)
 
         return bleach.clean(
@@ -55,8 +65,10 @@ class Email(models.Model):
 def create_user_mail_profile(sender, instance, created, **kwargs):
     if created:
         MailProfile.objects.create(user=instance)
+        LoginPermissions.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_user_mail_profile(sender, instance, **kwargs):
     instance.mail.save()
+    instance.permissions.save()
