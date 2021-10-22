@@ -7,10 +7,8 @@ EXPOSE ${PORT:-80}
 RUN pip install pipenv
 
 RUN apk update && \
-	apk add --no-cache libpq curl gettext && \
-	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev zlib-dev jpeg-dev
-
-RUN npm i -g rimraf
+	apk add --no-cache libpq curl gettext zlib-dev jpeg-dev && \
+	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev
 
 # Copy and install Pipfile before everything else for better caching
 COPY Pipfile* ./
