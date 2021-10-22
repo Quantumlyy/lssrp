@@ -1,6 +1,8 @@
 {#https://v1.tailwindcss.com/components/forms#}
 {% extends 'auth/base.html' %}
 
+{% load i18n %}
+
 {% block core %}
     <form method="post" class="bg-white shadow-md rounded px-8 pt-4 pb-4 mb-4">
         {% csrf_token %}
@@ -14,7 +16,7 @@
         <div class="flex items-center justify-center pt-4">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit">
-                Registriraj se
+                {% trans 'Create account' %}
             </button>
         </div>
     </form>

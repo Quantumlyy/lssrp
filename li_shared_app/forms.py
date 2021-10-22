@@ -49,8 +49,7 @@ class StyledUserCreationForm(UserCreationForm):
         username = cleaned_data.get("username")
 
         if username and "@" in username:
-            # TODO: translation
-            msg = "Uporabniško ime ne vključuje domene."
+            msg = _("Username should not include domain!")
             self.add_error("username", msg)
 
 

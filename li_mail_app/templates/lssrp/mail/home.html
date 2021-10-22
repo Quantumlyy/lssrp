@@ -1,5 +1,7 @@
 {% extends 'lssrp/mail/base.html' %}
 
+{% load i18n %}
+
 {% block extra %}
     {% include "lssrp/mail/components/compose_float.html" %}
 {% endblock extra %}
@@ -12,7 +14,7 @@
         </ul>
     {% else %}
         <div class="flex min-w-full h-full min-h-full">
-            <div class="mx-auto py-8 text-center font-bold">Wow... najdi si nekaj prijateljev</div>
+            <div class="mx-auto py-8 text-center font-bold">{% trans 'Wow! Find some friends you fuck' %}</div>
         </div>
     {% endif %}
 {% endblock side_right %}

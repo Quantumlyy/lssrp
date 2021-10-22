@@ -30,7 +30,7 @@ login_forbidden = user_passes_test(
 
 
 # https://newbedev.com/how-to-prevent-user-to-access-login-page-in-django-when-already-logged-in
-def login_excluded(redirect_to):
+def login_excluded(redirect_to: str):
     """This decorator kicks authenticated users out of a view"""
 
     def _method_wrapper(view_method):

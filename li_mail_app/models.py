@@ -5,6 +5,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from tinymce.models import HTMLField
+from django.utils.translation import gettext as _
+
 
 from li_core import settings
 
@@ -56,7 +58,7 @@ class Email(models.Model):
         )
 
     def __str__(self):
-        return 'subject:"{subject}", from:{sender}, to:{receiver}'.format(
+        return _('subject:"{subject}", from:{sender}, to:{receiver}').format(
             subject=self.title, sender=self.sender, receiver=self.receiver
         )
 

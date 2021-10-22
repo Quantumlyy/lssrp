@@ -28,6 +28,8 @@ ENV NPM_BIN_PATH=/usr/local/bin/npm
 RUN python manage.py tailwind install
 RUN python manage.py tailwind build
 
+RUN python manage.py compilemessages
+
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 # HEALTHCHECK --interval=30s --timeout=20s --retries=15 \

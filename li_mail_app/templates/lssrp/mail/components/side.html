@@ -1,16 +1,18 @@
+{% load i18n %}
+
 <div class="min-h-full h-full">
     <div class="flex flex-col justify-center items-center min-h-full h-full">
         <div class="flex flex-col mt-auto justify-center items-center">
             <a href="/mail" class="py-2">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button">
-                    Prejeto
+                    {% trans 'Received' %}
                 </button>
             </a>
             <a href="/mail/folder/out" class="py-2">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button">
-                    Poslano
+                    {% trans 'Sent' %}
                 </button>
             </a>
         </div>
@@ -18,7 +20,7 @@
             <a href="/odjava" class="">
                 <button class="bg-lifeinvader hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button">
-                    Odjavi se
+                    {% trans 'Logout' %}
                 </button>
             </a>
         </div>

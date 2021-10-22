@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-22 12:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#: .\li_mail_app\admin.py:10
+msgid "Sent emails"
+msgstr "Poslana sporočila"
+
+#: .\li_mail_app\admin.py:16
+msgid "Received emails"
+msgstr "Prejeta sporočila"
+
+#: .\li_mail_app\models.py:61
+#, python-brace-format
+msgid "subject:\"{subject}\", from:{sender}, to:{receiver}"
+msgstr "tema:\"{subject}\", od:{sender}, za:{receiver}"
+
+#: .\li_mail_app\templates\lssrp\mail\components\side.html:9
+msgid "Received"
+msgstr "Prejeto"
+
+#: .\li_mail_app\templates\lssrp\mail\components\side.html:15
+msgid "Sent"
+msgstr "Poslano"
+
+#: .\li_mail_app\templates\lssrp\mail\components\side.html:23
+msgid "Logout"
+msgstr "Odjavi se"
+
+#: .\li_mail_app\templates\lssrp\mail\compose.html:20
+msgid "Send"
+msgstr "Pošlji"
+
+#: .\li_mail_app\templates\lssrp\mail\home.html:17
+msgid "Wow! Find some friends you fuck"
+msgstr "Wow! Najdi se nekaj prijateljev"
+
+#: .\li_shared_app\forms.py:27 .\li_shared_app\forms.py:66
+msgid "Password"
+msgstr "Geslo"
+
+#: .\li_shared_app\forms.py:37
+msgid "Password confirmation"
+msgstr "Potrditev gesla"
+
+#: .\li_shared_app\forms.py:44
+msgid "Enter the same password as before, for verification."
+msgstr "Ponovno vnesite geslo."
+
+#: .\li_shared_app\forms.py:52
+msgid "Username should not include domain!"
+msgstr "Uporabniško ime naj ne vključuje domene!"
+
+#: .\li_shared_app\templates\auth\login.html:19
+msgid "Login"
+msgstr "Prijavi se"
+
+#: .\li_shared_app\templates\auth\login.html:23
+#: .\li_shared_app\templates\auth\register.html:19
+msgid "Create account"
+msgstr "Ustvari račun"

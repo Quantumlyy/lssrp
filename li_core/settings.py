@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = "sl-SI"
+LANGUAGE_CODE = "sl"
 TIME_ZONE = "CET"
 USE_I18N = True
 USE_L10N = True
@@ -132,6 +132,7 @@ USE_TZ = True
 
 STATIC_ROOT = root(env("STATIC_DIR", default="../static"))
 MEDIA_ROOT = root(env("MEDIA_DIR", default="../media"))
+LOCALE_PATHS = (root(env("LOCALE_PATHS", default="./locale")),)
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",

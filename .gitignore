@@ -791,3 +791,4 @@ MigrationBackup/
 # End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm,pycharm+all,pycharm+iml,visualstudiocode,visualstudio
 
 docker.env
+django.mo
