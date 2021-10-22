@@ -6,10 +6,9 @@ EXPOSE ${PORT:-80}
 # Install Pipenv
 RUN pip install pipenv
 
-# PostgreSQL + cryptography
 RUN apk update && \
-	apk add --no-cache libpq curl && \
-	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev
+	apk add --no-cache libpq curl gettext && \
+	apk add --no-cache --virtual .build-deps postgresql-dev gcc musl-dev libffi-dev zlib-dev jpeg-dev
 
 RUN npm i -g rimraf
 
