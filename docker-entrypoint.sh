@@ -10,4 +10,4 @@ python manage.py migrate
 
 # Start server
 echo "Starting server"
-exec gunicorn lssrp_core.wsgi:application --bind 0.0.0.0:${PORT:-80} --capture-output
+exec gunicorn li_core.wsgi:application --bind 0.0.0.0:${PORT:-80} --capture-output
