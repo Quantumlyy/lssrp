@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-22 12:55+0200\n"
+"POT-Creation-Date: 2021-10-25 19:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,9 +26,25 @@ msgstr ""
 msgid "Received emails"
 msgstr ""
 
+#: .\li_mail_app\models.py:44
+msgid "Sender"
+msgstr ""
+
+#: .\li_mail_app\models.py:47
+msgid "Receiver"
+msgstr ""
+
 #: .\li_mail_app\models.py:61
 #, python-brace-format
 msgid "subject:\"{subject}\", from:{sender}, to:{receiver}"
+msgstr ""
+
+#: .\li_mail_app\models.py:66
+msgid "Email"
+msgstr ""
+
+#: .\li_mail_app\models.py:67
+msgid "Emails"
 msgstr ""
 
 #: .\li_mail_app\templates\lssrp\mail\components\side.html:9

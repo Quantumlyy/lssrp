@@ -41,10 +41,10 @@ class Email(models.Model):
     sent_time = models.DateTimeField(auto_now_add=True, blank=True)
 
     sender = models.ForeignKey(
-        MailProfile, related_name="sent", on_delete=models.CASCADE
+        MailProfile, related_name="sent", on_delete=models.CASCADE, verbose_name=_("Sender")
     )
     receiver = models.ForeignKey(
-        MailProfile, related_name="received", on_delete=models.CASCADE
+        MailProfile, related_name="received", on_delete=models.CASCADE, verbose_name=_("Receiver")
     )
 
     def content_text(self) -> str:
@@ -61,6 +61,10 @@ class Email(models.Model):
         return _('subject:"{subject}", from:{sender}, to:{receiver}').format(
             subject=self.title, sender=self.sender, receiver=self.receiver
         )
+
+    class Meta:
+        verbose_name = _("Email")
+        verbose_name_plural = _("Emails")
 
 
 @receiver(post_save, sender=User)
